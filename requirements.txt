@@ -9,3 +9,5 @@ scipy
 torchgeometry
 configer
 trimesh
+pyrender 
+chumpy

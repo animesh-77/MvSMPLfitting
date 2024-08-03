@@ -132,3 +132,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+data/
+data_COLMAP/
+
+# ignore downloaded models
+models/

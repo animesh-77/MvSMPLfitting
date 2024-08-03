@@ -99,6 +99,9 @@ def main(**args):
 
 if __name__ == "__main__":
 
-    # sys.argv = ["", "--config=cfg_files/fit_smpl.yaml"]
+    if os.name == 'nt':
+        sys.argv = ["", "--config=cfg_files/fit_smpl_windows.yaml"]
+    elif os.name == 'posix':
+        sys.argv = ["", "--config=cfg_files/fit_smpl_linux.yaml"]
     args = parse_config()
     main(**args)

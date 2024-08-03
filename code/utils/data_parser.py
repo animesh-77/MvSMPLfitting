@@ -306,8 +306,11 @@ class FittingData(Dataset):
         self.keyp_folder = osp.join(data_folder, keyp_folder)
 
         img_serials = sorted(os.listdir(self.img_folder))
+
         self.img_paths = []
         for i_s in img_serials:
+            if ".jpg" in i_s or ".png" in i_s or ".JPG" in i_s or ".db" in i_s:
+                continue 
             i_s_dir = osp.join(self.img_folder, i_s)
             img_cameras = sorted(os.listdir(i_s_dir))
             this_serials = []
@@ -316,6 +319,7 @@ class FittingData(Dataset):
                 cam_imgs = [osp.join(i_c_dir, img_fn)
                             for img_fn in os.listdir(i_c_dir)
                             if img_fn.endswith('.png') or
+                            img_fn.endswith('.JPG') or
                             img_fn.endswith('.jpg') and
                             not img_fn.startswith('.')]
                 cam_imgs = sorted(cam_imgs)

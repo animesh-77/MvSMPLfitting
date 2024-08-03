@@ -74,7 +74,30 @@ def non_linear_solver(
             len(body_pose_prior_weights)), "Number of weight must match"
     
     # process keypoints
+    print('keypoints shape:', len(keypoints))
     keypoint_data = torch.tensor(keypoints, dtype=dtype)
+    # keypoints is of shape N, 4, 18, 3 make it to N, 4, 17, 3 skipping the one at 1 index
+    change_dict= {0:0,
+                  2:6,
+                  3:8,
+                  4:10,
+                  5:5,
+                  6:7,
+                  7:9,
+                  8:12,
+                  9:14,
+                  10:16,
+                  12:13,
+                  13:15,
+                  14:2,
+                  15:1,
+                  16:4,
+                  17:3}
+    keypoint_data_new = torch.zeros_like(keypoint_data[:,:,1:,:]) # only 17 keypoints
+    for old_key, new_key in change_dict.items():
+        keypoint_data_new[:,:,new_key,:] = keypoint_data[:,:,old_key,:]
+    
+    keypoint_data = keypoint_data_new
     gt_joints = keypoint_data[:, :, :, :2]
     if use_joints_conf:
         joints_conf = []

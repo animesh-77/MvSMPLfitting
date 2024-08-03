@@ -104,7 +104,8 @@ def init(**kwarg):
     cam_params = kwarg.pop('cam_param')
     extris, intris = load_camera_para(cam_params)
     trans, rot = get_rot_trans(extris, photoscan=False)
-
+    print('-----------------> rotations: ', rot)
+    print('-----------------> translations ',trans)
     # Create the camera object
     # create camera
     views = len(extris)
