@@ -138,3 +138,6 @@ data_COLMAP/
 
 # ignore downloaded models
 models/
+
+# .vscode 
+.vscode/
